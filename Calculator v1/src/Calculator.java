@@ -72,20 +72,21 @@ public class Calculator {
 		frmCalculator.getContentPane().add(jtfValue);
 		jtfValue.setColumns(10);
 		
-		jbtnSign = new JButton("+/-");
+		jbtnSign = new JButton("+ / -");
 		jbtnSign.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(jtfValue.getText().length()>0)
 				{
 					//System.out.println(jtfValue.getText());
-					Double temp=Double.parseDouble(jtfValue.getText());
+					int temp=Integer.parseInt(jtfValue.getText());
 					temp=temp*-1;
-					jlblCal.setText(Double.toString(temp));
-					jtfValue.setText(Double.toString(temp));
+					jlblCal.setText(Integer.toString(temp));
+					jtfValue.setText(Integer.toString(temp));
+					isDecimal=true;
 				}
 			}
 		});
-		jbtnSign.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		jbtnSign.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		jbtnSign.setBounds(37, 444, 55, 37);
 		frmCalculator.getContentPane().add(jbtnSign);
 		
@@ -350,6 +351,16 @@ public class Calculator {
 		JButton jbtnCe = new JButton("CE");
 		jbtnCe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/*if(isBrackets==false)
+				{
+					jtfValue.setText(jtfValue.getText()+"(");
+					isBrackets=true;
+				}
+				else	//brackets started
+				{
+					jtfValue.setText(jtfValue.getText()+")");
+					isBrackets=false;
+				}*/
 				jtfValue.setText("");
 				if(operation=='@')	//operator not pressed, val1 is to be erased
 				{
@@ -359,7 +370,7 @@ public class Calculator {
 				else	//to work on val2
 				{
 					val2=0.0;
-					jlblCal.setText(Double.toString(val1) + operation);  
+					jlblCal.setText(Double.toString(val1) + operation);
 				}
 			}
 		});
@@ -604,5 +615,3 @@ public void getResult()
 }
 
 }
-
-//end of code
